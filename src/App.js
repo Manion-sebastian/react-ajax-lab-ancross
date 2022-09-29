@@ -5,6 +5,7 @@ import DisplayCards from './DisplayCards';
 
 function App() {
   
+  const [visible, setVisible] = useState(false)
   const [faves, setFaves] = useState([])
   const [search, setSearch] = useState('')
   const [data, setData] = useState({villagers: []})
@@ -27,6 +28,22 @@ function App() {
     })
   }
 
+  const handleClick = villager => {
+    if(!faves.includes(villager)){
+      setFaves([...faves, villager])
+      if(!visible){
+        setVisible(true)
+      }
+    }
+  }
+
+  const handleClearFavs = () => {
+    setFaves([])
+    if(visible){
+      setVisible(false)
+    }
+  }
+
   
 
   return (
@@ -40,7 +57,20 @@ function App() {
             onChange={e => {setSearch(e.target.value)}}
           />
         </div>
-        <DisplayCards villagers={getFilteredVillagers()}/>
+        <div className={`favorites ${visible? '': 'hidden'}`}  >
+          <h1>Favorite Villagers</h1>
+          <DisplayCards 
+          clickie={false}
+          villagers={faves}/>
+
+          <button onClick={() => handleClearFavs()}>Clear Favorites</button>
+        </div>
+        
+        <DisplayCards 
+        clickie={true}
+        villagers={getFilteredVillagers()}
+        handleClick={handleClick}
+        />
   
     </div>
   )

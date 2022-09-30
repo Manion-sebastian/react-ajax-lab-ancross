@@ -54,6 +54,8 @@ function App() {
             id="villager-search" 
             type="text" 
             value={search} 
+            autoComplete='off'
+            autoCapitalize='words'
             onChange={e => {setSearch(e.target.value)}}
           />
         </div>

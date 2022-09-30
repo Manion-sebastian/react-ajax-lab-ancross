@@ -19,7 +19,7 @@ export default function DisplayCards(props) {
 
 
     return (
-        <div>
+        <div className="displayWrap">
             {allVillagers}
         </div>
     )

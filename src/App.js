@@ -16,7 +16,7 @@ function App() {
       .then((rdata) => {
         rdata = Object.values(rdata)
         setData({villagers: rdata})
-        console.log('Villager Data:', rdata)
+        // console.log('Villager Data:', rdata)
       })
   }, [])
 
@@ -65,12 +65,14 @@ function App() {
 
           <button onClick={() => handleClearFavs()}>Clear Favorites</button>
         </div>
-        
-        <DisplayCards 
-        clickie={true}
-        villagers={getFilteredVillagers()}
-        handleClick={handleClick}
-        />
+        <div className='characterGrid'>
+          <DisplayCards 
+          clickie={true}
+          villagers={getFilteredVillagers()}
+          handleClick={handleClick}
+          />
+
+        </div>
   
     </div>
   )
